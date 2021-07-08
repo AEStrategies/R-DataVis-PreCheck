@@ -5,7 +5,7 @@ output: html_notebook
 
 This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
 
-Execute all chunks by clicking the down arrow on the right of the *Run* button, then select *Run All*.  After a few seconds, you should see a popup window with an interactive visualization.  After verifying that you can interact with the visualization my manipulating the 2 controls on the page, the prerequisite test has passed, and you can close the window.
+Execute all chunks by clicking the down arrow on the right of the *Run* button, then select *Run All*.  After a few seconds, you should see a popup window with an interactive visualization.  After verifying that you can interact with the visualization my manipulating the 2 controls on the page, the prerequisite test has passed, and you can close the popup window.
 
 Note: After closing the popup window with the interactive visualization, there will be 2 tracebacks at the end of the notebook that are safe to ignore. 
 
