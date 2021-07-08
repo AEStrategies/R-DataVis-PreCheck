@@ -1,0 +1,60 @@
+---
+title: "R Preequisite Test Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Execute all chunks by clicking the down arrow on the right of the *Run* button, then select *Run All*.  After a few seconds, you should see a popup window with an interactive visualization.  After verifying that you can interact with the visualization my manipulating the 2 controls on the page, the prerequisite test has passed, and you can close the window.
+
+Note: After closing the popup window with the interactive visualization, there will be 2 tracebacks at the end of the notebook that are safe to ignore. 
+
+```{r}
+summary(iris)
+```
+```{r}
+class(iris)
+```
+```{r tidyverse_test}
+library(dplyr)
+
+iris %>% filter(Species == "setosa", Sepal.Length > 5.4) %>% arrange(desc(Petal.Length))
+```
+
+```{r data.table_test}
+library(data.table)
+
+irisDT <- as.data.table(iris)
+class(irisDT)
+```
+
+```{r ggplot_test}
+library(ggplot2)
+
+qplot(Sepal.Length, Petal.Length, data=iris, color=Species, size=Petal.Width)
+```
+
+
+```{r shiny_test}
+library(shiny)
+
+shinyApp(
+   ui= fluidPage(
+    selectInput("n_breaks", label = "Number of bins:",
+              choices = c(10, 20, 35, 50), selected = 20),
+
+    sliderInput("bw_adjust", label = "Bandwidth adjustment:",
+              min = 0.2, max = 2, value = 1, step = 0.2),
+    plotOutput("curvePlot")
+   ),
+    server = function(input,output) {
+      output$curvePlot <- renderPlot({
+        hist(faithful$eruptions, probability = TRUE,
+          breaks = as.numeric(input$n_breaks),
+          xlab = "Duration (minutes)",
+          main = "Geyser eruption duration")
+        dens <- density(faithful$eruptions, adjust = input$bw_adjust)
+        lines(dens, col = "blue")
+})}
+)
+```
